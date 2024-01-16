@@ -22,15 +22,19 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'category_id' => ['nullable', 'exists:categories,id'],
             'title' => ['required', 'min:3', 'max:200', 'unique:projects'],
             'logo' => ['nullable', 'min:4', 'max:255'],
             'image' => ['nullable', 'image'],
+            'github' => ['required', 'url', 'unique:projects', 'min:4', 'max:255'],
             'description' => ['nullable'],
+            'status' => ['nullable', 'min:3', 'max:200'],
         ];
     }
     public function messages(): array
     {
         return [
+            'category_id.exists' => 'The category field is invalid.',
             'title.required' => 'The title field is required.',
             'title.min' => 'The title must be at least :min characters.',
             'title.max' => 'The title may not be greater than :max characters.',
@@ -38,6 +42,13 @@ class StoreProjectRequest extends FormRequest
             'logo.min' => 'The logo must be at least :min characters.',
             'logo.max' => 'The logo may not be greater than :max characters.',
             'image.image' => 'The image must be an image.',
+            'github.required' => 'The github field is required.',
+            'github.url' => 'The github field is invalid.',
+            'github.unique' => 'The github link has already been taken.',
+            'github.min' => 'The github field must be at least :min characters.',
+            'github.max' => 'The github field must be at least :max characters.',
+            'status.min' => 'The status must be at least :min characters.',
+            'status.max' => 'The status must be at least :max characters.',
         ];
     }
 }

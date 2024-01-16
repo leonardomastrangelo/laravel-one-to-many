@@ -14,7 +14,7 @@
             <thead>
                 <tr>
                     <th scope="col">Logo</th>
-                    <th scope="col">Category's ID</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Title</th>
                     <th scope="col">Github</th>
                     <th scope="col">Description</th>
