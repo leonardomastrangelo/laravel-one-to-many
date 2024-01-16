@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Category;
 
 class ProjectController extends Controller
 {
@@ -25,7 +26,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $categories = Category::all();
+        return view('admin.projects.create', compact('categories'));
     }
 
     /**
@@ -38,10 +40,6 @@ class ProjectController extends Controller
         $slug = Project::getSlug($formData['title']);
         // Aggiunta dello slug ai dati del form
         $formData['slug'] = $slug;
-        // Ottenere l'ID dell'utente
-        $userId = auth()->id();
-        // Aggiunta dell'ID dell'utente ai dati del form
-        $formData['user_id'] = $userId;
         // Salvare l'immagine nello storage con il nome dello slug
         if ($request->hasFile('image')) {
             $image = $request->file('image');
