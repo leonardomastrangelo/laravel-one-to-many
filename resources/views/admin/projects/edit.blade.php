@@ -22,6 +22,39 @@
             @error('logo')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
+            <div class="form-group w-50">
+                <label for="github">Github</label>
+                <input type="url" class="form-control @error('github') is-invalid @enderror" id="github" name="github" maxlength="255" minlength="3" value="{{old('github', $project->github)}}">
+            </div>
+            @error('github')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            <div class="form-group w-25">
+                <label for="status">Status</label>
+                <select name="status" id="status" class="form-control">
+                    <option {{$project->status == 0 ? 'selected' : ''}} value="0">In Progress</option>
+                    <option {{$project->status == 1 ? 'selected' : ''}} value="1">Completed</option>
+                </select>
+            </div>
+            @error('status')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            <div class="form-group w-25">
+                <label for="logo">Category</label>
+                <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                    <option value="">
+                        Select Category
+                    </option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{ $project->category_id == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            @error('category_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
             <div class="form-group w-25">
                 <label for="image">Image</label>
                 <div>

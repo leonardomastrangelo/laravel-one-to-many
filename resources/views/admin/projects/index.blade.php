@@ -32,11 +32,11 @@
                             alt="{{$project->title}}">
                         </div>
                     </th>
-                    <td>{{$project->category_id}}</td>
+                    <td>{{($project->category) ? $project->category->name : 'Uncategorized'}}</td>
                     <td>{{$project->title}}</td>
                     <td>{{$project->github}}</td>
                     <td class="desc">{{substr($project->description, 0, 350) . '...' }}</td>
-                    <td>{{$project->status}}</td>
+                    <td>{{$project->status == 0 ? 'In Progress' : 'Completed'}}</td>
                     <td> {{-- OPERATIONS --}}
                         <a class="btn btn-info" href="{{route('admin.projects.show', $project->slug)}}">
                             <i class="fa-solid fa-eye"></i>

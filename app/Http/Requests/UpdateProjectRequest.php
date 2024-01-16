@@ -28,7 +28,7 @@ class UpdateProjectRequest extends FormRequest
             'logo' => ['nullable', 'min:4', 'max:255'],
             'image' => ['nullable', 'image'],
             'github' => ['required', 'url', Rule::unique('projects')->ignore($this->project), 'min:4', 'max:255'],
-            'status' => ['nullable', 'min:3', 'max:200'],
+            'status' => ['nullable'],
             'description' => ['nullable'],
         ];
     }
@@ -47,8 +47,6 @@ class UpdateProjectRequest extends FormRequest
             'github.unique' => 'The github link has already been taken.',
             'github.min' => 'The github field must be at least :min characters.',
             'github.max' => 'The github field must be at least :max characters.',
-            'status.min' => 'The status must be at least :min characters.',
-            'status.max' => 'The status must be at least :max characters.'
         ];
     }
 }
