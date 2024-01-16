@@ -32,6 +32,12 @@
                     <span>Projects</span>
                 </a>
             </li>
+            <li>
+                <a href="{{route('admin.categories.index')}}">
+                   <i class="fa-solid fa-layer-group"></i>
+                    <span>Categories</span>
+                </a>
+            </li>
         </ul>
     </div>
 
