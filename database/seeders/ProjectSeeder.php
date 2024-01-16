@@ -19,11 +19,12 @@ class ProjectSeeder extends Seeder
         $projects = json_decode($projects, true);
         foreach ($projects as $project) {
             $newProject = new Project();
-            $newProject->user_id = 1;
             $newProject->title = $project['title'];
+            $newProject->github = $project['github'];
             $newProject->slug = Str::slug($project['title'], '-');
             $newProject->logo = $project['logo'];
             $newProject->image = ProjectSeeder::storeimage($project['image'], $newProject->slug);
+            $newProject->status = $project['status'];
             $newProject->description = $project['description'];
             $newProject->save();
         }

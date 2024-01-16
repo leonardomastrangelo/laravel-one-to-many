@@ -6,39 +6,31 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Project extends Model
+class Category extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'category_id',
-        'title',
-        'github',
+        'name',
         'slug',
-        'logo',
-        'image',
-        'status',
-        'description',
     ];
 
-    public static function getSlug($title)
+    public static function getSlug($name)
     {
-        $slug = Str::of($title)->slug("-");
+        $slug = Str::of($name)->slug("-");
         $count = 1;
 
         // Prendi il primo post il cui slug è uguale a $slug
         // se è presente allora genero un nuovo slug aggiungendo -$count
-        while (Project::where("slug", $slug)->first()) {
-            $slug = Str::of($title)->slug("-") . "-{$count}";
+        while (Category::where("slug", $slug)->first()) {
+            $slug = Str::of($name)->slug("-") . "-{$count}";
             $count++;
         }
 
         return $slug;
     }
 
-    public function category()
+    public function projects()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Project::class);
     }
-
 }

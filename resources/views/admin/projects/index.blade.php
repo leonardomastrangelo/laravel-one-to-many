@@ -14,10 +14,11 @@
             <thead>
                 <tr>
                     <th scope="col">Logo</th>
-                    <th scope="col">ID</th>
-                    <th scope="col">User_ID</th>
+                    <th scope="col">Category's ID</th>
                     <th scope="col">Title</th>
+                    <th scope="col">Github</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Operations</th>
                 </tr>
             </thead>
@@ -31,10 +32,11 @@
                             alt="{{$project->title}}">
                         </div>
                     </th>
-                    <td>{{$project->id}}</td>
-                    <td>{{$project->user_id}}</td>
+                    <td>{{$project->category_id}}</td>
                     <td>{{$project->title}}</td>
+                    <td>{{$project->github}}</td>
                     <td class="desc">{{substr($project->description, 0, 350) . '...' }}</td>
+                    <td>{{$project->status}}</td>
                     <td> {{-- OPERATIONS --}}
                         <a class="btn btn-info" href="{{route('admin.projects.show', $project->slug)}}">
                             <i class="fa-solid fa-eye"></i>

@@ -12,11 +12,13 @@ return new class extends Migration {
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->string('title', 200)->unique();
             $table->string('slug', 255)->unique();
             $table->string('logo', 255)->nullable();
             $table->string('image', 255)->nullable();
+            $table->string('github', 255)->unique();
+            $table->boolean('status')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });
